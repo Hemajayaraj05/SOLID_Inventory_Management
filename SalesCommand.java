@@ -1,3 +1,4 @@
+import java.util.*;
 class SalesCommand implements Command {
      InventoryManager inventoryManager;
      ParseInput parser;
@@ -11,7 +12,12 @@ class SalesCommand implements Command {
     
     public void execute(String input)
     {
-        Sale sale=parser.parseSalesInput(input);
-        inventoryManager.recordSale(sale);
+        List<Sale> sales=parser.parseSalesInput(input);
+        for(int i=0;i<sales.size();i++)
+        {
+           inventoryManager.recordSale(sales.get(i));
+        }
+        
     }
 }
+

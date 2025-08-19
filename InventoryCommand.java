@@ -12,7 +12,7 @@ class InventoryCommand implements Command
     
     public void execute(String input) 
     {
-        Product product=parser.parseInventoryInput(input);
-        inventoryManager.addProduct(product);
+        ParsedInventory parsedInventory=parser.parseInventoryInput(input);
+        inventoryManager.addProduct(parsedInventory.product,parsedInventory.quantity);
     }
 }
