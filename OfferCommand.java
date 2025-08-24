@@ -20,8 +20,4 @@ public class OfferCommand implements Command{
         
 
     }
-
-
-    
-    
 }

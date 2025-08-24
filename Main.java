@@ -1,3 +1,4 @@
+
 import java.util.*;
 public class Main{
     public static void main(String[] args)
@@ -31,6 +32,7 @@ public class Main{
     }
    
 }
+
 
 //Doubt: for view sales,stock,offer...there is no need of passing the input to the execute function..
 //is it better to create a seperate interface and that should be inplemented in the CommandHandler and inventoryCommand 

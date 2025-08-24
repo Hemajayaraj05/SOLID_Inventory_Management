@@ -12,7 +12,9 @@ public class Offer {
         this.offerId=offerId;
         this.productId=productId;
         this.MinQuantity=MinQuantity;
-        this.discountPercentage=discountPercentage;
+        this.discountPercentage = (discountPercentage == null || discountPercentage.isBlank() || discountPercentage.equalsIgnoreCase("N/A"))
+                              ? null 
+                              : discountPercentage;
     }
     
     

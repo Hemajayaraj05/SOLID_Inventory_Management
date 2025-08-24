@@ -77,22 +77,29 @@ public class InventoryManager{
 
     }
 
-    public Offer getBestOffer(String productId, int quantity)
-   {
-    Offer bestOffer=null;
-    for (Offer offer:offerHistory.values())
-     {
-        if (offer.productId.equals(productId) && quantity >= offer.MinQuantity) 
-        {
-            if (bestOffer==null || 
-                Integer.parseInt(offer.discountPercentage.replace("%","")) > 
-                Integer.parseInt(bestOffer.discountPercentage.replace("%","")))
-                
-            {
-                bestOffer = offer;
+public Offer getBestOffer(String productId, int quantity) {
+    Offer bestOffer = null;
+    double lowestPrice = Double.MAX_VALUE;
+
+    for (Offer offer : offerHistory.values()) {
+        if (offer.productId.equals(productId) && quantity >= offer.MinQuantity) {
+            
+            ProvidingOffer strategy = OfferFactory.getOfferStrategy(offer);
+
+            if (strategy != null) {
+              
+                Product product = products.get(productId);
+                Sale tempSale = new Sale(productId, quantity);
+
+                double price = strategy.calculatePrice(product, tempSale, offer);
+                if (price < lowestPrice) {
+                    lowestPrice = price;
+                    bestOffer = offer;
+                }
             }
         }
     }
+
     return bestOffer;
 }
 
